@@ -1,0 +1,113 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "displayName", "role", "createdAt"]
+    },
+    "products": {
+      "title": "Product",
+      "description": "Product information for shop, digital and dropshipping",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "salePrice": { "type": "number" },
+        "image": { "type": "string" },
+        "category": { "type": "string" },
+        "isDigital": { "type": "boolean" },
+        "isFree": { "type": "boolean" },
+        "isPremium": { "type": "boolean" },
+        "isDropshipping": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "reviewsCount": { "type": "number" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "stock": { "type": "number" },
+        "downloadUrl": { "type": "string" }
+      },
+      "required": ["id", "name", "description", "price", "image", "category", "isDigital", "isFree", "isPremium", "isDropshipping"]
+    },
+    "cart": {
+      "title": "Cart",
+      "description": "User's shopping cart",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "productId": { "type": "string" },
+              "quantity": { "type": "number" }
+            }
+          }
+        }
+      },
+      "required": ["userId", "items"]
+    },
+    "chatMessages": {
+      "title": "Chat Message",
+      "description": "Messages for the customer support chat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "isAdmin": { "type": "boolean" }
+      },
+      "required": ["id", "senderId", "senderName", "text", "timestamp", "isAdmin"]
+    },
+    "blogPosts": {
+      "title": "Blog Post",
+      "description": "Articles for the blog",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "content": { "type": "string" },
+        "author": { "type": "string" },
+        "date": { "type": "string" },
+        "image": { "type": "string" },
+        "category": { "type": "string" }
+      },
+      "required": ["id", "title", "excerpt", "content", "author", "date", "image", "category"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profile documents"
+    },
+    "/products/{productId}": {
+      "schema": "products",
+      "description": "Product catalog"
+    },
+    "/carts/{userId}": {
+      "schema": "cart",
+      "description": "User shopping carts"
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": "chatMessages",
+      "description": "Chat messages for support"
+    },
+    "/blogPosts/{postId}": {
+      "schema": "blogPosts",
+      "description": "Blog articles"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-brand-gold: #D4AF37;
+  --color-brand-blue: #0047AB;
+  --color-brand-black: #0A0A0A;
+  --color-brand-white: #FFFFFF;
+  --color-brand-gray: #F5F5F5;
+  
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.6s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@layer base {
+  body {
+    @apply bg-brand-white text-brand-black font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+.glass-nav {
+  @apply bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50;
+}
+
+.premium-card {
+  @apply bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden;
+}
+
+.btn-primary {
+  @apply bg-brand-black text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-black/90 transition-all active:scale-95;
+}
+
+.btn-outline {
+  @apply border-2 border-brand-black text-brand-black px-8 py-3 rounded-full font-semibold hover:bg-brand-black hover:text-white transition-all active:scale-95;
+}
+
+.section-padding {
+  @apply py-20 px-6 max-w-7xl mx-auto;
+}
